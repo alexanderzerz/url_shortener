@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # AZ27062015: on start navigate to the resource index
   root 'urls#index'
+
+  # redirect every url; must be placed as last routing option,
+  #   because every url will be positiv evaluated  
+  get '*path' => 'urls#redirect'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

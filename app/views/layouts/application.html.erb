@@ -8,6 +8,16 @@
 </head>
 <body>
 
+<% if flash.any? %>
+	<div id="error_explanation">
+		<ul>
+  		<% flash.each do |message_type, message| %>  		
+    		<li><%= message_type %>: <%= message %></li>
+  		<% end %>
+  		</ul>
+  	</div>
+<% end %>
+
 <%= yield %>
 
 <%= debug(params) if Rails.env.development? %>

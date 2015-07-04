@@ -67,6 +67,17 @@ class UrlsController < ApplicationController
     end
   end
 
+  # handle for request of shorten url
+  def redirect        
+    url = Url.find_by(url_short: params[:path])
+    if !url.present?
+      flash[:ERROR] = "Shorten Url doesn't exist: #{@url_host}#{params[:path]}"
+      redirect_to action: "index"
+    else
+      redirect_to url["url_long"]
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_url

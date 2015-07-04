@@ -10,3 +10,7 @@ Specifications:
 - check for valid URL
 - shorten input URL
 - shorten URL will be desplayed
+
+Second user story, completed xxx:
+
+Implement redirecting.
