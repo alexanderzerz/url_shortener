@@ -2,20 +2,16 @@
 <html>
 <head>
   <title>UrlShortener</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<% if flash.any? %>
+<% if flash[:ERROR] %>
 	<div id="error_explanation">
-		<ul>
-  		<% flash.each do |message_type, message| %>  		
-    		<li><%= message_type %>: <%= message %></li>
-  		<% end %>
-  		</ul>
-  	</div>
+    <h2><%= flash[:ERROR] %></h2>		
+  </div>
 <% end %>
 
 <%= yield %>

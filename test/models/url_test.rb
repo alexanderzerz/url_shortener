@@ -51,9 +51,8 @@ class UrlTest < ActiveSupport::TestCase
 		assert_not @url_dup.valid?
 	end
 
-	test "same url long must result in same url short" do
-		temp_url_short = @url.url_short
-		@url.save		
-		assert_equal(temp_url_short, @url_dup.url_short)
+	test "shorten url should be calculated proper" do
+		@url.save
+		assert_equal(@url.url_short, 'NGVmOWYwODNh')
 	end
 end

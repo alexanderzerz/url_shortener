@@ -11,6 +11,6 @@ Specifications:
 - shorten input URL
 - shorten URL will be desplayed
 
-Second user story, completed xxx:
+Second user story, completed 05072015:
 
-Implement redirecting.
+- redirecting
