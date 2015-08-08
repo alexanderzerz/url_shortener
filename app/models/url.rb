@@ -16,8 +16,11 @@ class Url < ActiveRecord::Base
 	# AZ27062015: if the long url already existst, the corresponding short url will be
 	#  returned as warning.
 	def url_already_exist
-		if create_url_short() == true
-			errors.add(:warning, "shorten URL already exist \"#{url_host}#{@temp_url_short}\"")
+
+		url_error = create_url_short()
+
+		if url_error.present?
+			errors.add(:warning, url_error)
 		end
 	end
 
@@ -36,21 +39,30 @@ class Url < ActiveRecord::Base
 	def create_url_short
 		
 		temp_url_long = self.url_long
-		url_exist = false
+		url_exist_error = nil
 		
 		loop do
-			@temp_url_short = Digest::MD5.hexdigest(temp_url_long)[0..8]
-			@temp_url_short = Base64::encode64(@temp_url_short).chomp
+			if self.url_short.empty?
+				@temp_url_short = Digest::MD5.hexdigest(temp_url_long)[0..8]
+				@temp_url_short = Base64::encode64(@temp_url_short).chomp
+			else
+				@temp_url_short = self.url_short
+			end
 
 			temp_record = Url.find_by(url_short: @temp_url_short)
 			
 			if temp_record == nil
 				break
 			elsif temp_record["url_long"] == self.url_long
-				url_exist = true
+				url_exist_error = "Url long already exist"
 				break
 			else
-				temp_url_long += "-"
+				if self.url_short.empty?
+					temp_url_long += "-"
+				else
+					url_exist_error = "Url short already exist"
+					break
+				end
 			end				
 		end
 		return url_exist		
