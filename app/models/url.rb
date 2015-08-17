@@ -42,7 +42,7 @@ class Url < ActiveRecord::Base
 		url_exist_error = nil
 		
 		loop do
-			if self.url_short.empty?
+			if self.url_short  == nil || self.url_short.empty?
 				@temp_url_short = Digest::MD5.hexdigest(temp_url_long)[0..8]
 				@temp_url_short = Base64::encode64(@temp_url_short).chomp
 			else
@@ -65,6 +65,6 @@ class Url < ActiveRecord::Base
 				end
 			end				
 		end
-		return url_exist		
+		return url_exist_error
 	end
 end

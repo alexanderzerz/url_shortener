@@ -43,5 +43,9 @@ group :development, :test do
   gem 'spring'
 
   gem 'minitest-reporters'
+
+  gem 'capybara'
+
+  gem 'poltergeist'
 end
 
