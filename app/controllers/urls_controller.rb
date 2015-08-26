@@ -74,6 +74,7 @@ class UrlsController < ApplicationController
       flash[:ERROR] = "Shorten Url doesn't exist: #{@url_host}#{params[:path]}"
       redirect_to action: "index"
     else
+      url.update(hit_count: url.hit_count + 1)
       redirect_to url["url_long"]
     end
   end

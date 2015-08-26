@@ -53,9 +53,11 @@ class Url < ActiveRecord::Base
 			
 			if temp_record == nil
 				break
-			elsif temp_record["url_long"] == self.url_long
-				url_exist_error = "Url long already exist"
-				break
+			elsif temp_record["hit_count"].to_i < self.hit_count
+					break
+			elsif temp_record["url_long"] == self.url_long 
+					url_exist_error = "Url long already exist"
+					break
 			else
 				if self.url_short.empty?
 					temp_url_long += "-"

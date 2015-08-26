@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627221210) do
+ActiveRecord::Schema.define(version: 20150826075711) do
 
   create_table "urls", force: :cascade do |t|
     t.string   "url_long"
     t.string   "url_short"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "hit_count",  default: 0
   end
 
   add_index "urls", ["url_short"], name: "index_urls_on_url_short", unique: true
