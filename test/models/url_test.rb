@@ -55,4 +55,10 @@ class UrlTest < ActiveSupport::TestCase
 		@url.save
 		assert_equal(@url.url_short, 'NGVmOWYwODNh')
 	end
+
+	test "hit count should have 1" do
+		@url.save
+		@url.update(hit_count: @url.hit_count + 1)
+		assert_equal(@url.hit_count, 1)
+	end
 end
