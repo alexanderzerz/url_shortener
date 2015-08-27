@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Urls</h1>
+<h1 class="text-center">Listing Urls</h1>
 
-<table>
+<table class="table-center">
   <thead>
     <tr>
       <th>Url long</th>
@@ -13,18 +13,22 @@
   </thead>
 
   <tbody>
+    <% graph_data = Hash.new %>
     <% @urls.each do |url| %>
       <tr>
         <td><%= url.url_long %></td>
         <td><%= "#{@url_host}#{url.url_short}" %></td>
-        <td align="center"><%= url.hit_count %></td>
+        <td class="text-center"><%= url.hit_count %></td>
         <td><%= link_to 'Show', url %></td>
         <td><%= link_to 'Edit', edit_url_path(url) %></td>
         <td><%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% graph_data.store(url.url_short, url.hit_count) %>
     <% end %>
   </tbody>
 </table>
+
+<%= bar_chart graph_data, discrete: true %>
 
 <br>
 
