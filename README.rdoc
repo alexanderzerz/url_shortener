@@ -12,5 +12,10 @@ Specifications:
 - shorten URL will be desplayed
 
 Second user story, completed 05072015:
-
 - redirecting
+
+Third user story, completed 17082015:
+- use individual short code
+
+Fourth user story, completed 27082015:
+- statistic of url usage

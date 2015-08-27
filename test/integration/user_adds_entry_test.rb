@@ -21,6 +21,7 @@ class UserAddsEntryTest < ActionDispatch::IntegrationTest
     click_button('Create Url')    
     visit('http://www.example.com/test2')
     visit('urls#index')
+    # the third element contains the table data with the hit count
     within(:xpath, "//tbody/tr[contains(., 'https://github.com/jnicklas/capybara')]/td[3]") do        
         page.assert_text('1')
     end
